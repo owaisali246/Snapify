@@ -1,14 +1,14 @@
-import sanityClient from '@sanity/client';
-import imageUrlBuilder from '@sanity/image-url';
+import sanityClient from '@sanity/client'
+import imageUrlBuilder from '@sanity/image-url'
 
-export const client = new sanityClient({
-    projectId: process.env.SANITY_PROJECT_ID,
+export const client = sanityClient({
+    projectId: process.env.REACT_APP_SANITY_PROJECT_ID,
     dataset: 'production',
     apiVersion: '2021-11-16',
     useCdn: true,
-    token: process.env.SANITY_TOKEN,
-})
+    token: process.env.REACT_APP_SANITY_TOKEN,
+});
 
-const builder = imageUrlBuilder(client);
+const builder = imageUrlBuilder(client)
 
-export const uelFor = (source) => builder.imageUrl(source);
+export const urlFor = (source) => builder.image(source)

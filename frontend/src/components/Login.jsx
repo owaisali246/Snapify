@@ -1,29 +1,35 @@
 import React from 'react'
-import GoogleLogin from 'react-google-login';
+import { GoogleLogin } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
-import logo from '../assets/logowhite.png'
-import shareVideo from '../assets/share.mp4'
 import { client } from '../client'
+import shareVideo from '../assets/share.mp4'
+import logo from '../assets/logowhite.png'
+import jwt_decode from "jwt-decode";
 
 const Login = () => {
 
     const navigate = useNavigate();
 
     const responseGoogle = (response) => {
-        localStorage.setItem('user', JSON.stringify(response.profileObj));
-        const { name, googleId, imageUrl } = response.profileObj;
+        console.log(jwt_decode(response.credential))
+
+        localStorage.setItem('user', JSON.stringify(jwt_decode(response.credential)));
+
+        const { name, picture, sub } = jwt_decode(response.credential)
+
         const doc = {
-            _id: googleId,
+            _id: sub,   //! the underscore variables let sanity know which schema are we referring to
             _type: 'user',
             userName: name,
-            image: imageUrl,
-        }
-        client.createIfNotExists(doc).then(() => {
-            navigate('/', { replace: true })
-        });
+            image: picture,
+        };
 
+        client.createIfNotExists(doc).then(() => {
+            navigate('/', { replace: true });
+        });
     }
+
 
     return (
         <div className='flex justify-start items-center flex-col h-screen'>
@@ -43,7 +49,6 @@ const Login = () => {
                     </div>
                     <div className='shadow-2xl'>
                         <GoogleLogin
-                            clientId={process.env.REACT_APP_GOOGLE_API_TOKEN}
                             render={(renderProps) => (
                                 <button
                                     type='button'
@@ -55,7 +60,7 @@ const Login = () => {
                             )}
                             onSuccess={responseGoogle}
                             onFailure={responseGoogle}
-                            cookiePolicy='single_host_origin'
+                            cookiePolicy="single_host_origin"
 
                         />
                     </div>
