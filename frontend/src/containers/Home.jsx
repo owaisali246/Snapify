@@ -8,6 +8,7 @@ import Pins from './Pins';
 import Sidebar from '../components/Sidebar';
 import UserProfile from '../components/UserProfile';
 import logo from '../assets/logo.png';
+import { fetchUser } from '../utils/fetchUser';
 
 
 
@@ -18,7 +19,7 @@ const Home = () => {
     const scrollRef = useRef(null);
 
 
-    const userInfo = localStorage.getItem('user') !== 'undefined' ? JSON.parse(localStorage.getItem('user')) : localStorage.clear()
+    const userInfo = fetchUser();
 
     useEffect(() => {
         const query = userQuery(userInfo?.sub);
