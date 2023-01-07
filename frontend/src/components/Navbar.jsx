@@ -15,7 +15,6 @@ const Navbar = ({ searchTerm, setSearchTerm, user }) => {
                 <input type="text" onChange={(e) => setSearchTerm(e.target.value)} placeholder="Search" value="Search term" onFocus={() => navigate('/search')} className="w-full bg-gray-200 p-2 outline-none" />
             </div>
             <div className="flex gap-3">
-                {/* Causing errors, fix it by copying code from the repo */}
 
                 {user && <Link to={`user-profile/${user?._id}`} className="hidden md:block">
                     <img src={user.image} alt="user-pic" className="w-14 h-14 rounded-full " />
