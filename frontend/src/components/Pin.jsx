@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { client, urlFor } from '../client'
 import { Link, useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
-import { MdDownloadForOffline } from 'react-icons/md';
+import { MdDownload } from 'react-icons/md';
 import { AiTwotoneDelete } from 'react-icons/ai';
 import { BsFillArrowUpRightCircleFill } from 'react-icons/bs'
 import { fetchUser } from '../utils/fetchUser';
@@ -63,8 +63,8 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
                                     onClick={(e) => {
                                         e.stopPropagation();
                                     }} style={{ marginLeft: '3px' }}
-                                    className="bg-white w-8 h-8 p-1 rounded-full flex items-center justify-center text-dark text-xl opacity-75 hover:opacity-100 hover:shadow-md outline-none"
-                                ><MdDownloadForOffline />
+                                    className="bg-red-600 w-8 h-8 p-1 rounded-full flex items-center justify-center text-white text-xl opacity-75 hover:opacity-100 hover:shadow-md outline-none"
+                                ><MdDownload />
                                 </a>
                             </div>
                             {alreadySaved ? (

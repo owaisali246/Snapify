@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { MdDownloadForOffline, MdOutlineImageAspectRatio } from 'react-icons/md'
+import { MdDownload, MdOutlineImageAspectRatio } from 'react-icons/md'
 import { Link, useParams } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
 import { client, urlFor } from '../client'
@@ -78,7 +78,7 @@ const PinDetail = ({ user }) => {
                                     e.stopPropagation();
                                 }} style={{ marginLeft: '3px' }}
                                 className="bg-red-600 w-10 h-10 p-1 rounded-full flex items-center justify-center text-white text-xl opacity-75 hover:opacity-100 hover:shadow-md outline-none"
-                            ><MdDownloadForOffline />
+                            ><MdDownload />
                             </a>
                         </div>
                         <a href={pinDetail.destination} target='_blank' rel='noreferrer'>
@@ -90,7 +90,7 @@ const PinDetail = ({ user }) => {
                         <p className='mt-3'> {pinDetail.about} </p>
                     </div>
                     <div className="max-w-max">
-                        <Link to={`user-profile/${pinDetail?.postedBy._id}`} className='flex gap-2 mt-5 items-center bg-white'>
+                        <Link to={`../user-profile/${pinDetail?.postedBy._id}`} className='flex gap-2 mt-5 items-center bg-white'>
                             <img src={pinDetail?.postedBy?.image} alt="user profile" className='w-10 h-10 rounded-full object-cover' />
                             <p className='font-semibold capitalize'>{pinDetail?.postedBy?.userName}</p>
                         </Link>
@@ -99,9 +99,11 @@ const PinDetail = ({ user }) => {
                     <div className='max-h-370 overflow-y-auto'>
                         {pinDetail?.comments?.map((item) => (
                             <div className='flex gap-2 mt-5 items-center bg-white rounded-lg' key={item.comment}>
-                                <img src={item.postedBy.image} alt="User Profile"
-                                    className='w-10 h-10 rounded-full cursor cursor-pointer'
-                                />
+                                <Link to={`../user-profile/${item?.postedBy?._id}`} className=''>
+                                    <img src={item.postedBy.image} alt="User Profile"
+                                        className='w-10 h-10 rounded-full cursor cursor-pointer'
+                                    />
+                                </Link>
                                 <div className='flex flex-col'>
                                     <p className='font-bold'> {item.postedBy.userName} </p>
                                     <p className='font-normal'> {item.comment} </p>
@@ -110,7 +112,7 @@ const PinDetail = ({ user }) => {
                         ))}
                     </div>
                     <div className='flex flex-wrap mt-6 gap-3'>
-                        <Link to={`user-profile/${user?._id}`} className=''>
+                        <Link to={`../user-profile/${user?._id}`} className=''>
                             <img src={user.image} alt="user profile" className='w-10 h-10 rounded-full cursor-pointer' />
                         </Link>
                         <input type="text" className='flex-1 border-gray-300 font-medium outline-none border-2 p-2 rounded-full focus:border-red-400'
