@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { IoMdLogOut } from 'react-icons/io'
-import { BsGoogle } from 'react-icons/bs'
 import { useParams, useNavigate } from 'react-router-dom'
 import { client } from '../client'
 import { googleLogout } from '@react-oauth/google'
@@ -9,7 +8,7 @@ import MasonryLayout from './MasonryLayout'
 import Spinner from './Spinner'
 
 
-const UserProfile = () => {
+const UserProfile = ({ originalUser }) => {
 
     const [user, setUser] = useState(null)
     const [pins, setPins] = useState(null)
@@ -66,7 +65,7 @@ const UserProfile = () => {
                         />
                         <h1 className='font-bold text-3xl text-center mt-3 '>{user.userName}</h1>
                         <div className='absolute top-0 z-1 right-0 p-2'>
-                            {userId === user._id && (
+                            {originalUser && userId === originalUser._id && (
                                 <button
                                     type='button'
                                     onClick={() => {

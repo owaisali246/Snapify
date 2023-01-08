@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { MdDownload, MdOutlineImageAspectRatio } from 'react-icons/md'
+import { MdDownload } from 'react-icons/md'
 import { Link, useParams } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
 import { client, urlFor } from '../client'
@@ -18,7 +18,7 @@ const PinDetail = ({ user }) => {
     const { pinId } = useParams();
 
     const addComment = () => {
-        if (comment) {
+        if (comment && user) {
             setAddingComments(true);
 
             client
@@ -54,8 +54,6 @@ const PinDetail = ({ user }) => {
 
     useEffect(() => {
         fetchPinDetails();
-        console.log('Page reloaded successfully');
-
 
     }, [pinId])
 
@@ -100,7 +98,7 @@ const PinDetail = ({ user }) => {
                         {pinDetail?.comments?.map((item) => (
                             <div className='flex gap-2 mt-5 items-center bg-white rounded-lg' key={item.comment}>
                                 <Link to={`../user-profile/${item?.postedBy?._id}`} className=''>
-                                    <img src={item.postedBy.image} alt="User Profile"
+                                    <img src={item?.postedBy?.image} alt="User Profile"
                                         className='w-10 h-10 rounded-full cursor cursor-pointer'
                                     />
                                 </Link>
@@ -113,7 +111,7 @@ const PinDetail = ({ user }) => {
                     </div>
                     <div className='flex flex-wrap mt-6 gap-3'>
                         <Link to={`../user-profile/${user?._id}`} className=''>
-                            <img src={user.image} alt="user profile" className='w-10 h-10 rounded-full cursor-pointer' />
+                            <img src={user?.image} alt="user profile" className='w-10 h-10 rounded-full cursor-pointer' />
                         </Link>
                         <input type="text" className='flex-1 border-gray-300 font-medium outline-none border-2 p-2 rounded-full focus:border-red-400'
                             placeholder='Add a comment' value={comment} onChange={(e) => setComment(e.target.value)}

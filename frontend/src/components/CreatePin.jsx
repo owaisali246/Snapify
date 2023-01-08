@@ -30,7 +30,7 @@ const CreatePin = ({ user }) => {
                     setImageAsset(document)
                     setLoading(false);
                 }).catch((error) => {
-                    console.log('Image upload error: ', error)
+                    console.log(error)
                 })
         } else {
             setWrongImageType(true)
