@@ -81,8 +81,8 @@ const CreatePin = ({ user }) => {
                 <p className='text-red-500 mb-5 text-xl transition-all duration-150 ease-in '> Please fill in all the fields.</p>
             )}
             <div className="flex 2xl:flex-row flex-col justify-center items-center bg-white p-3 lg:p-5 w-full lg:w-4/5">
-                <div className="bg-secondaryColor hover:bg-gray-200 p-3 flex flex-0.7 w-full">
-                    <div className='flex justify-center items-center flex-col border-2 border-dotted border-gray-300 w-full p-3 h-420'>
+                <div className="bg-secondaryColor hover:bg-gray-200 active:bg-gray-300 p-3 flex flex-0.7 w-full">
+                    <div className='flex justify-center items-center flex-col border-2 border-dotted border-gray-700 w-full p-3 h-420'>
                         {loading && <Spinner />}
                         {wrongImageType && <p>Wrong image type</p>}
                         {!imageAsset ? (
@@ -156,9 +156,9 @@ const CreatePin = ({ user }) => {
                                 }}
                                 className="outline-none w-4/5 text-base border-b-2 border-gray-200 p-2 rounded-md cursor-pointer"
                             >
-                                <option value="others" className="sm:text-bg hover:bg-red-500">Select Category</option>
+                                <option key={'initial'} value="others" className="sm:text-bg hover:bg-red-500">Select Category</option>
                                 {categories.map((item) => (
-                                    <option className="text-base border-0 outline-none capitalize text-black " value={item.name}>
+                                    <option key={item.name} className="text-base border-0 outline-none capitalize text-black " value={item.name}>
                                         {item.name}
                                     </option>
                                 ))}

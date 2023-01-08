@@ -4,10 +4,12 @@ import Pin from './Pin';
 
 const breakpointColumnsObj = {
     default: 4,
-    3000: 6,
+    3000: 7,
+    2500: 6,
     2000: 5,
-    1500: 3,
-    1000: 2,
+    1500: 4,
+    1200: 3,
+    950: 2,
     500: 1,
 };
 
