@@ -5,8 +5,11 @@ import { IoMdAdd, IoMdSearch } from 'react-icons/io';
 
 const Navbar = ({ searchTerm, setSearchTerm, user }) => {
     const navigate = useNavigate();
+    const Login= () => {
+        navigate('/login')
+    }
 
-    if (!user) return null;
+    // if (!user) return null;
 
     return (
         <div className="flex justify-center gap-2 md:gap-5 w-full mt-5 pb-7">
@@ -16,12 +19,17 @@ const Navbar = ({ searchTerm, setSearchTerm, user }) => {
             </div>
             <div className="flex gap-3">
 
-                {user && <Link to={`user-profile/${user?._id}`} className="hidden md:block">
+                {user ? 
+                (<Link to={`user-profile/${user?._id}`} className="hidden md:block">
                     <img src={user.image} alt="user-pic" className="w-14 h-14 rounded-full " />
-                </Link>}
+                </Link>):(
+                    <button type='button' className='bg-red-500 hover:bg-red-600 active:bg-red-700 cursor-pointer text-white font-semibold rounded-full px-4' onClick={Login}>
+                        Login
+                    </button>
+                )}
 
 
-                <Link to={`create-pin`} className="bg-gray-200 text-black rounded-full w-12 h-12 md:w-14 md:h-14 flex justify-center items-center">
+                <Link to={`create-pin`} className="bg-gray-200 hover:bg-gray-300 text-black rounded-full w-12 h-12 md:w-14 md:h-14 flex justify-center items-center">
                     <IoMdAdd />
                 </Link>
             </div>

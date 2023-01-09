@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import { client } from '../client';
 import shareVideo from '../assets/share.mp4';
+import { IoIosArrowForward } from 'react-icons/io'
 import logo from '../assets/logowhite.png';
 import jwt_decode from "jwt-decode";
 
@@ -46,22 +47,24 @@ const Login = () => {
                     <div className='p-5'>
                         <img src={logo} width='130px' alt="logo" />
                     </div>
-                    <div className='shadow-2xl'>
+                    <div className='shadow-2xl flex flex-col justify-center items-center'>
                         <GoogleLogin
                             render={(renderProps) => (
                                 <button
                                     type='button'
                                     onClick={renderProps.onClick}
                                     disabled={renderProps.disabled}
-                                    className='bg-mainColor flex justify-center items-center p-3 rounded-lg cursor-pointer outline-none'>
+                                    className='flex justify-center items-center p-3 rounded-lg cursor-pointer outline-none'>
                                     <FcGoogle className='mr-4' /> Sign in with google account
                                 </button>
                             )}
                             onSuccess={responseGoogle}
                             onFailure={responseGoogle}
                             cookiePolicy="single_host_origin"
-
                         />
+                        <button type='button' className='flex items-center justify-center bg-mainColor text-slate-700 mt-3 px-3' style={{height:'40px',borderRadius:'4px' ,letterSpacing:'0.25px' ,fontSize:'14px', fontFamily:'Google Sans' ,fontWeight:'500'}}  onClick={()=>navigate('/')} >  
+                        Continue without an Account <IoIosArrowForward className='ml-1 text-lg'/>
+                        </button>
                     </div>
                 </div>
             </div>

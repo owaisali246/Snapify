@@ -6,7 +6,7 @@ import logo from '../assets/logo.png'
 import { categories } from '../utils/data'
 
 const isNotActiveStyle = 'flex items-center px-5 gap-3 font-semibold text-gray-700 hover:text-black transition-all duration-75 ease-in-out capitalize';
-const isActiveStyle = 'flex items-center px-5 gap-3 font-extrabold border-r-2 border-black transition-all duration-75 ease-in-out capitalize';
+const isActiveStyle = 'flex items-center px-5 gap-3 font-extrabold text-red-600 border-r-2 border-red-500 transition-all duration-75 ease-in-out capitalize';
 
 const Sidebar = ({ user, closeToggle }) => {
 

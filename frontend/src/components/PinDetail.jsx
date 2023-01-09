@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { MdDownload } from 'react-icons/md'
-import { Link, useParams } from 'react-router-dom'
+import { FaUser } from 'react-icons/fa'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
 import { client, urlFor } from '../client'
 import { pinDetailQuery, pinDetailMorePinQuery } from '../utils/data'
@@ -16,6 +17,7 @@ const PinDetail = ({ user }) => {
     const [comment, setComment] = useState('')
     const [addingComments, setAddingComments] = useState(false)
     const { pinId } = useParams();
+    const navigate = useNavigate();
 
     const addComment = () => {
         if (comment && user) {
@@ -110,9 +112,17 @@ const PinDetail = ({ user }) => {
                         ))}
                     </div>
                     <div className='flex flex-wrap mt-6 gap-3'>
+                        { user ? (
                         <Link to={`../user-profile/${user?._id}`} className=''>
-                            <img src={user?.image} alt="user profile" className='w-10 h-10 rounded-full cursor-pointer' />
+                            <img src={user?.image} alt="user profile" className='w-12 h-12 rounded-full cursor-pointer' />
                         </Link>
+                        ):(
+                            <button title='Login' className='flex justify-center items-center w-12 h-12 rounded-full cursor-pointer bg-red-500' onClick={() => navigate('/login')}>
+                                <FaUser className='text-2xl text-gray-200'/>
+                            </button>
+                        )
+
+                        }
                         <input type="text" className='flex-1 border-gray-300 font-medium outline-none border-2 p-2 rounded-full focus:border-red-400'
                             placeholder='Add a comment' value={comment} onChange={(e) => setComment(e.target.value)}
                         />
@@ -126,7 +136,7 @@ const PinDetail = ({ user }) => {
             </div>
             {pins?.length > 0 ? (
                 <>
-                    <h2 className='text-center font-bold text-2xl mt-8 mb-4'>More like this</h2>
+                    <h2 className='text-center font-bold text-2xl mt-8 mb-4'>More Pins like this</h2>
                     <MasonryLayout pins={pins} />
                 </>
             ) : (
