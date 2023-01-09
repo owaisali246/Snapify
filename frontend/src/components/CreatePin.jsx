@@ -73,7 +73,12 @@ const CreatePin = ({ user }) => {
         }
     };
 
-
+    if(!user) {
+        return (
+            <div>
+                <h1 className='text-3xl text-center mt-20 text-red-500'>Please Login to Create Pins!</h1>
+            </div>
+        )}
 
     return (
         <div className='flex flex-col justify-center items-center mt-5 lg:h-4/5'>
