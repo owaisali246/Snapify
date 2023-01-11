@@ -73,12 +73,13 @@ const CreatePin = ({ user }) => {
         }
     };
 
-    if(!user) {
+    if (!user) {
         return (
             <div>
                 <h1 className='text-3xl text-center mt-20 text-red-500'>Please Login to Create Pins!</h1>
             </div>
-        )}
+        )
+    }
 
     return (
         <div className='flex flex-col justify-center items-center mt-5 lg:h-4/5'>
@@ -110,10 +111,10 @@ const CreatePin = ({ user }) => {
                         ) : (
                             <div className='relative h-full'>
                                 <img src={imageAsset?.url} alt="uploaded-image" className='w-full h-full' />
-                                <button type='button' className='absolute bottom-3 right-3 p-3 rounded-full bg-white text-red-500 text-xl cursor-pointer outline-none hover:shadow-md transition-all duration-500 ease-in-out'
+                                <button type='button' className='absolute bottom-3 right-3 p-3 rounded-full hover:bg-red-600 hover:text-white active:bg-red-700 bg-white text-red-500 text-xl cursor-pointer outline-none hover:shadow-md transition-all duration-500 ease-in-out'
                                     onClick={() => setImageAsset(null)}
                                 >
-                                    <MdDelete />
+                                    <MdDelete className='' />
                                 </button>
                             </div>
                         )}

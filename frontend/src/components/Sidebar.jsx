@@ -14,8 +14,8 @@ const Sidebar = ({ user, closeToggle }) => {
         if (closeToggle) closeToggle(false);
     };
     return (
-        <div className="flex flex-col justify-between bg-white h-full overflow-y-scroll min-w-210 hide-scrollbar">
-            <div className="flex flex-col">
+        <div className="flex flex-col justify-between shadow-2xl bg-white h-full overflow-y-scroll min-w-210 hide-scrollbar">
+            <div className="flex flex-col mb-5">
                 <Link
                     to="/"
                     className="flex px-5 gap-2 my-6 pt-1 w-190 items-center"
@@ -34,7 +34,7 @@ const Sidebar = ({ user, closeToggle }) => {
                         <RiHomeFill />
                         Home
                     </NavLink>
-                    <h3 className="mt-2 px-5 text-center font-semibold text-lg 2xl:text-xl">
+                    <h3 className="mt-2 px-5 text-center font-semibold text-lg">
                         Discover categories
                     </h3>
                     {categories.slice(0, categories.length - 1).map((category) => (

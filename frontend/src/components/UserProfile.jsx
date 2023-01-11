@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import { googleLogout } from '@react-oauth/google'
 import { IoMdLogOut } from 'react-icons/io'
 import { useParams, useNavigate } from 'react-router-dom'
 import { client } from '../client'
-import { googleLogout } from '@react-oauth/google'
 import { userCreatedPinsQuery, userQuery, userSavedPinsQuery } from '../utils/data'
 import MasonryLayout from './MasonryLayout'
 import Spinner from './Spinner'
@@ -14,11 +14,18 @@ const UserProfile = ({ originalUser }) => {
     const [pins, setPins] = useState(null)
     const [text, setText] = useState('Created')
     const [activeBtn, setActiveBtn] = useState('created')
-    const navigate = useNavigate();
     const { userId } = useParams()
+    const navigate = useNavigate()
+
 
     const activeBtnStyles = 'bg-red-500 mx-1 text-white font-bold p-2 outline-none rounded-full w-20'
     const notActiveBtnStyles = 'bg-primary mx-1 text-black font-bold p-2 outline-none rounded-full w-20'
+
+    const logout = () => {
+        googleLogout();
+        localStorage.clear();
+        navigate('/login')
+    }
 
     useEffect(() => {
         const query = userQuery(userId)
@@ -64,14 +71,12 @@ const UserProfile = ({ originalUser }) => {
                             className='rounded-full w-40 h-40 -mt-20 shadow-xl object-cover'
                         />
                         <h1 className='font-bold text-3xl text-center mt-3 '>{user.userName}</h1>
-                        <div className='absolute top-0 z-1 right-0 p-2'>
+                        <div className='absolute top-2 z-1 right-0 p-2'>
                             {originalUser && userId === originalUser._id && (
                                 <button
                                     type='button'
                                     onClick={() => {
-                                        googleLogout()
-                                        localStorage.clear()
-                                        navigate('/login')
+                                        logout();
                                     }}
                                     className='bg-red-500 hover:bg-red-600 text-white font-semibold active:bg-red-700 flex justify-center items-center px-3 py-2 rounded-full cursor-pointer outline-none shadow-md'>
                                     <IoMdLogOut className='mr-2 text-2xl' /> Logout
