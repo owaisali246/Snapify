@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { RiHomeFill } from 'react-icons/ri'
 import { IoIosArrowForward } from 'react-icons/io'
-import logo from '../assets/logo.png'
+import logo from '../assets/SnapifyLogo.png'
 import { categories } from '../utils/data'
 
 const isNotActiveStyle = 'flex items-center px-5 gap-3 font-semibold text-gray-700 hover:text-black transition-all duration-75 ease-in-out capitalize';
@@ -18,10 +18,10 @@ const Sidebar = ({ user, closeToggle }) => {
             <div className="flex flex-col mb-5">
                 <Link
                     to="/"
-                    className="flex px-5 gap-2 my-6 pt-1 w-190 items-center"
+                    className="flex justify-items-center-center px-5 gap-2 mx-auto my-6 pt-1 items-center"
                     onClick={handleCloseSidebar}
                 >
-                    <img src={logo} alt="logo" className="w-full" />
+                    <img src={logo} alt="logo" className="w-36" />
                 </Link>
                 <div className="flex flex-col gap-5">
                     <NavLink

@@ -1,18 +1,18 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { HiMenu } from 'react-icons/hi';
 import { AiFillCloseCircle } from 'react-icons/ai';
-import { Link, Route, Routes, useNavigate } from 'react-router-dom';
+import { Link, redirect, Route, Routes, useNavigate } from 'react-router-dom';
 import { client } from '../client';
 import { fetchUser } from '../utils/fetchUser';
 import { userQuery } from '../utils/data';
 import Pins from './Pins';
 import Sidebar from '../components/Sidebar';
 import UserProfile from '../components/UserProfile';
-import logo from '../assets/logo.png';
+import logo from '../assets/SnapifyLogo.png';
 
 
 
-const Home = () => {
+const Home = ({ Logout }) => {
 
     const [toggleSideBar, setToggleSideBar] = useState(false);
     const [user, setUser] = useState(null);
@@ -38,6 +38,7 @@ const Home = () => {
         scrollRef.current.scrollTo(0, 0)
     }, [])
 
+
     return (
         <div className="flex bg-gray-50 md:flex-row flex-col h-screen transaction-height duration-75 ease-out">
             <div className="hidden md:flex h-screen flex-initial z-20">
@@ -47,7 +48,7 @@ const Home = () => {
                 <div className="px-4 py-2 w-full flex flex-row justify-between items-center shadow-md h-[128px]">
                     <HiMenu fontSize={40} className="cursor-pointer" onClick={() => setToggleSideBar(true)} />
                     <Link to="/">
-                        <img src={logo} alt="logo" className="w-28" />
+                        <img src={logo} alt="logo" className="h-24" />
                     </Link>
                     {user ?
                         (<Link to={`user-profile/${user?._id}`}>
@@ -69,7 +70,7 @@ const Home = () => {
             </div>
             <div className="pb-2 flex-1 h-screen overflow-y-scroll" ref={scrollRef}>
                 <Routes>
-                    <Route path="/user-profile/:userId" element={<UserProfile originalUser={user && user} />} />
+                    <Route path="/user-profile/:userId" element={<UserProfile Logout={Logout} originalUser={user && user} />} />
                     <Route path="/*" element={<Pins user={user && user} />} />
                 </Routes>
             </div>

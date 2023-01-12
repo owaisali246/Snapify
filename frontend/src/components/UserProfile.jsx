@@ -8,7 +8,7 @@ import MasonryLayout from './MasonryLayout'
 import Spinner from './Spinner'
 
 
-const UserProfile = ({ originalUser }) => {
+const UserProfile = ({ originalUser, Logout }) => {
 
     const [user, setUser] = useState(null)
     const [pins, setPins] = useState(null)
@@ -22,6 +22,7 @@ const UserProfile = ({ originalUser }) => {
     const notActiveBtnStyles = 'bg-primary mx-1 text-black font-bold p-2 outline-none rounded-full w-20'
 
     const logout = () => {
+        Logout();
         googleLogout();
         localStorage.clear();
         navigate('/login')
